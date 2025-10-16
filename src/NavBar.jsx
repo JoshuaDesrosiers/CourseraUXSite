@@ -1,23 +1,31 @@
-import './App.css'
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function NavBar() {
-  const Nav ={'Home':'/','Wip':'/wip','About':'/about','Connect':'/connect'}
+  const Nav = {'Home':'/','Wip':'/wip','About':'/about','Connect':'/connect'};
   const location = useLocation();
-  const currentPath = location.pathname;
-  return (
-    <>
-      <div className='flex p-2'>
-        {Object.keys(Nav).map((val,index)=>{
-            
-            return(<Link className={currentPath==Nav[val]?'nav-active bobber':'nav-idle'} key={'Nav'+index} to={Nav[val]}>{val}</Link>
+  const [path, setPath] = useState(null);
+ const [hasMounted, setHasMounted] = useState(false);
+ useEffect(() => { setHasMounted(true); setPath(location.pathname); });
+ if (!hasMounted) { return null; }
 
-            )
-        })}
-      </div>
-    </>
-  )
+
+  return (
+    <div className='flex p-2 justify-center lg:justify-start '>
+      {Object.keys(Nav).map((val, index) => {
+        const isActive = path === Nav[val];
+        return (
+          <Link
+            key={'Nav' + index}
+            to={Nav[val]}
+            className={isActive ? 'nav-active bobber' : 'nav-idle'}
+          >
+            {val}
+          </Link>
+        );
+      })}
+    </div>
+  );
 }
 
-export default NavBar
+export default NavBar;

@@ -23,7 +23,7 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      { "source": "**", "function": "ssr" }
+      { "source": "**", "function": "ssrApp" }
     ]
   }
 }
