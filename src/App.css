@@ -565,10 +565,21 @@ video {
   padding: 0.25rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  font-size: 90%;
   transition-duration: 200ms;
 }
 
+.nav-idle:hover{
+  animation: shake 200ms linear infinite ;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .nav-active {
+  margin-top: 0.25rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   border-radius: 9999px;
@@ -593,22 +604,38 @@ video {
 
 @keyframes bob {
   0% {
-    transform: rotate(10deg);
+    transform: rotate(7deg);
   }
 
   /* Start state */
 
   50% {
-    transform: rotate(-10deg);
+    transform: rotate(-7deg);
   }
 
   100% {
-    transform: rotate(10deg);
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 0px) scale(75%);
+  }
+
+  /* Start state */
+
+  50% {
+    transform:translate(-1px,0px) scale(75%);
+  }
+
+  100% {
+    transform: translate(1px,0px) scale(75%);
   }
 }
 
 .bobber{
-  animation: bob 2s linear infinite ;
+  animation: bob 2s ease-in-out infinite ;
 }
 
 :root {

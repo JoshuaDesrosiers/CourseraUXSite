@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Home";
 import Wip from "./wip";
+import About from './about'
+import Connect from "./connect";
 
 function MainWrapper() {
   return (
@@ -15,6 +17,8 @@ function MainWrapper() {
           <Route index element={<Home />} />
           
           <Route index path="wip" element={<Wip />} />
+          <Route index path="about" element={<About />} />
+          <Route index path="connect" element={<Connect />} />
         </Route>
       </Routes>
     </BrowserRouter>
