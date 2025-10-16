@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .nav-idle {
+    @apply p-1 border-2 ml-2 mr-2 rounded-full pl-3 pr-3 duration-200 scale-75;
+  }
+  .nav-active {
+    @apply p-1 border-2 ml-2 mr-2 rounded-full pl-3 pr-3 bg-white text-black duration-200;
+  }
+}
+@keyframes bob {
+      0% {
+        transform: rotate(10deg);
+      } /* Start state */
+      50% {
+        transform: rotate(-10deg);
+      } 
+      100% {
+        transform: rotate(10deg);
+      } 
+    }
+.bobber{
+ animation: bob 2s linear infinite ;
+}
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+body {
+}
