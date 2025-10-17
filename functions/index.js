@@ -3,37 +3,36 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
-// Path to your built server bundle (Vite SSR output)
+// Paths to built assets
 const SSR_BUILD_PATH = path.resolve(__dirname, './dist/server/entry-server.js');
-// Path to your built client index.html (acts as the template)
 const TEMPLATE_PATH = path.resolve(__dirname, './dist/client/index.html');
 
 const app = express();
 
-// Serve static assets (for JS, CSS, images, etc.)
+// Serve static assets (JS, CSS, images, etc.)
 app.use(express.static(path.resolve(__dirname, './dist/client'), { index: false }));
 
-// SSR route handler — catches all URLs
+// Catch-all SSR route
 app.use('*', async (req, res) => {
   try {
-    // 1️⃣ Load the base template (from your built client index.html)
+    // 1️⃣ Read the base template (built client HTML)
     let template = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
 
-    // 2️⃣ Import your SSR renderer
+    // 2️⃣ Import the SSR renderer
     const { render } = require(SSR_BUILD_PATH);
 
-    // 3️⃣ Generate the HTML using your renderer
-    // Make sure your `entry-server.js` exports `render(url, context?)`
-    const { appHtml, head = '', preloadLinks = '' } = await render(req.originalUrl, {});
+    // 3️⃣ Generate rendered HTML from your server entry
+    const { html, head = '', preloadLinks = '' } = await render(req.originalUrl, {});
 
-    // 4️⃣ Inject rendered app into the template
-    const html = template
+    // 4️⃣ Inject into the template
+    const finalHtml = template
       .replace('<!--preload-links-->', preloadLinks)
-      .replace('<!--head-->', head)
-      .replace('<!--app-html-->', appHtml);
+      .replace('<!--app-head-->', head)
+      .replace('<!--app-html-->', html);
 
-    // 5️⃣ Send the SSR result
-    res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+    // 5️⃣ Send result
+    res.status(200).set({ 'Content-Type': 'text/html' }).end(finalHtml);
+
   } catch (err) {
     console.error('SSR error:', err);
     res.status(500).end(err.stack);

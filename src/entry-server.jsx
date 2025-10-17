@@ -28,5 +28,5 @@ export async function render(_url) {
     </StrictMode>
   );
 
-  return { appHtml };
+  return {html: appHtml };
 }
