@@ -5,13 +5,13 @@
 
 @layer components {
   .nav-idle {
-    @apply p-1 border-2 ml-2 mr-2 rounded-full pl-3 pr-3 duration-200 scale-75 hover:pl-2 hover:pr-2 hover:ml-3 hover:mr-3 text-[90%] pt-2 hover:shaker;
+    @apply p-1 absolute bg-transparent text-blue-500 border-blue-500 border-2 ml-2 mr-2 rounded-full pl-3 pr-3 duration-200 scale-75 hover:pl-2 hover:pr-2 hover:ml-3 hover:mr-3 text-[90%] pt-2 hover:shaker;
   }
   .shaker{
      animation: shake 200ms linear infinite ;
   }
   .nav-active {
-    @apply p-1 border-2 mt-1 ml-2 mr-2 rounded-full pl-3 pr-3 bg-white text-black duration-200;
+    @apply p-1 glassy absolute border-2 border-blue-500 mt-1 ml-2 mr-2 rounded-full pl-3 pr-3 bg-blue-500 text-white duration-200;
   }
 }
 @keyframes bob {
@@ -45,10 +45,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: light;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: aliceblue;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -58,4 +57,20 @@
 
 
 body {
+}
+.acrylic-box {
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.582);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(19.1px);
+-webkit-backdrop-filter: blur(19.1px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+.glassy{
+  /* From https://css.glass */
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
 }
